@@ -1,0 +1,5 @@
+/usr/bin/x86_64-redhat-linux-gcc
+/usr/bin/gcc-ranlib
+/usr/bin/gcc-nm
+/usr/bin/gcc-ar
+/usr/bin/gcc

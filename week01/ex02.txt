@@ -1,0 +1,5 @@
+  105  history | tail -n 5 > ex02.txt
+  106  gedit ex02.sh
+  107  sh ex02.sh
+  108  history
+  109  history | tail -n 5 > ex02.txt
