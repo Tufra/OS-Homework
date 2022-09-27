@@ -1,0 +1,39 @@
+pstree output with n = 3:
+
+sh─┬─ex3─┬─ex3─┬─ex3───ex3
+   │     │     └─ex3
+   │     ├─ex3───ex3
+   │     └─ex3
+   └─pstree
+
+that corresponds to 3rd row of Pascal's triangle or binomial coefficients with the power of 3. 
+A total of 8 processes created (2^3).
+After each iteration produced children iterate less than their parents.
+Main process iterate 3 times = produces 3 chilren. First child will iterate 2 times, 
+since it was forked with i = 1. After second iteration main process created second child (i = 2), 
+which will iterate only once. At this time, first child created its first child, which also will iterate only once.
+Processes created at last iteration will not produce any child processes.
+
+pstree output with n = 5:
+
+sh─┬─ex3─┬─ex3─┬─ex3─┬─ex3─┬─ex3───ex3
+   │     │     │     │     └─ex3
+   │     │     │     ├─ex3───ex3
+   │     │     │     └─ex3
+   │     │     ├─ex3─┬─ex3───ex3
+   │     │     │     └─ex3
+   │     │     ├─ex3───ex3
+   │     │     └─ex3
+   │     ├─ex3─┬─ex3─┬─ex3───ex3
+   │     │     │     └─ex3
+   │     │     ├─ex3───ex3
+   │     │     └─ex3
+   │     ├─ex3─┬─ex3───ex3
+   │     │     └─ex3
+   │     ├─ex3───ex3
+   │     └─ex3
+   └─pstree
+
+There are a pattern: 1 5 10 10 5 1, a 5th row of Pascal's triangle. A total of 32 (2^5) processes.
+At each iteration every existing process creates a copy of itself. 
+It doubles the overall amount of processes. The number of processes created after all iterations is equal 2^n.
