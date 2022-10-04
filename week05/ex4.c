@@ -13,7 +13,7 @@ int is_prime(int n)
 }
 
 int n = 0;
-
+int flag = 0;
 // You will be locking and unlocking this
 pthread_mutex_t global_lock = PTHREAD_MUTEX_INITIALIZER;
 
@@ -24,8 +24,11 @@ int primes_found_so_far = 0;
 int get_number_to_check()
 {
     int ret = next_number_to_check;
-    if (next_number_to_check != n)
+    if (next_number_to_check != n) {
         next_number_to_check++;
+    } else {
+        flag = 1;
+    }
     return ret;
 }
 
@@ -36,19 +39,24 @@ void increment_primes()
 
 void *check_primes(void *arg)
 {
-    while (true)
+    while (1)
     {
-        pthread_mutex_lock(global_lock);
+        if (flag == 1)
+        {
+            return NULL;
+        }
+        
+        pthread_mutex_lock(&global_lock);
         int number = get_number_to_check();
-        pthread_mutex_unlock(global_lock);
+        pthread_mutex_unlock(&global_lock);
 
         int res = is_prime(number);
 
         if (res == 1)
         {
-            pthread_mutex_lock(global_lock);
+            pthread_mutex_lock(&global_lock);
             increment_primes();
-            pthread_mutex_unlock(global_lock);
+            pthread_mutex_unlock(&global_lock);
         }
     }
     
@@ -64,7 +72,7 @@ int main(int argc, char *argv[])
     pthread_t *threads = malloc(n_threads * sizeof(pthread_t));
     for (int i = 0; i < n_threads; i++)
     {
-        pthread_create(threads[i], NULL, check_primes, NULL);
+        pthread_create(threads + i, NULL, check_primes, NULL);
     }
     for (int i = 0; i < n_threads; i++)
     {
@@ -72,7 +80,7 @@ int main(int argc, char *argv[])
     }
 
     free(threads);
-    pthread_mutex_destroy(global_lock);
+    pthread_mutex_destroy(&global_lock);
 
     printf("%d\n", primes_found_so_far);
     exit(EXIT_SUCCESS);

@@ -30,7 +30,7 @@ typedef struct prime_counter_request
 void *prime_counter(void *arg)
 {
    int* result = malloc(sizeof(int));
-   &result = primes_count_in_interval((prime_counter_request*)arg->start, (prime_counter_request*)arg->finish);
+   *result = primes_count_in_interval(((prime_counter_request*)arg)->start, ((prime_counter_request*)arg)->finish);
    
    return result;
 }
@@ -58,7 +58,7 @@ int main(int argc, char *argv[])
             requests[i].finish = requests[i].start + segment_size;
         }
         
-        pthread_create(threads[i], NULL, prime_counter, (void *)requests[i]);
+        pthread_create(threads + i, NULL, prime_counter, (void *)(requests + i));
         
     }
 

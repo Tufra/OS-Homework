@@ -1,0 +1,5 @@
+In this task we use mutexes to avoid race condition.
+As a result, protected code (getting a number and incrementing counter) makes
+"ready" threads to wait when these operations will be available.
+It creates a bottleneck, that causes worse execution time than in ex3 
+and also describes, why there is almost no difference between 10 and 100 threads.

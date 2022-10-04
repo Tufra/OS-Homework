@@ -1,0 +1,6 @@
+Every thread counts primes in specified range, which is equal for them except for the last one
+(that one will have less work to do).
+It means that overall execution time depends on time of the longest thread. It supposed to be
+(n-1)th one. Because it has the largest (since last thread always hac <= elements)
+amount of elements and also the largest of them (largest elements of full-size thread).
+More threads => less amount of computations per thread => less execution time.

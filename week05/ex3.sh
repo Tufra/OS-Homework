@@ -1,7 +1,9 @@
 gcc ex3.c -o ex3
 
-time ./ex3 10000000 1 > ex3.txt
-time ./ex3 10000000 2 > ex3.txt
-time ./ex3 10000000 4 > ex3.txt
-time ./ex3 10000000 10 > ex3.txt
-time ./ex3 10000000 100 > ex3.txt
+/bin/time -o ./ex3.txt ./ex3 10000000 1 
+/bin/time -o ./ex3.txt -a ./ex3 10000000 2
+/bin/time -o ./ex3.txt -a ./ex3 10000000 4
+/bin/time -o ./ex3.txt -a ./ex3 10000000 10
+/bin/time -o ./ex3.txt -a ./ex3 10000000 100
+
+rm ./ex3
