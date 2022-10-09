@@ -1,0 +1,39 @@
+Output of ex3:
+n: 5
+quantum: 2
+Process 0 (arrival, burst): 3 1
+Process 1 (arrival, burst): 2 5
+Process 2 (arrival, burst): 3 8
+Process 3 (arrival, burst): 0 4
+Process 4 (arrival, burst): 1 2
+Process 3:
+                 completion time: 11
+                 turnaround time: 11
+                 waiting time: 7
+Process 4:
+                 completion time: 4
+                 turnaround time: 3
+                 waiting time: 2
+Process 1:
+                 completion time: 16
+                 turnaround time: 14
+                 waiting time: 9
+Process 0:
+                 completion time: 7
+                 turnaround time: 4
+                 waiting time: 4
+Process 2:
+                 completion time: 20
+                 turnaround time: 17
+                 waiting time: 10
+Average turnaround time: 9.800000
+Average waiting time: 6.400000
+
+Outputs of ex2 and ex1 -> ex2.txt
+
+The average metrics of round-robin algorithm are worse than
+these of FCFS and SJF. That is because of simultaneous execution of 
+all processes appeared. The execution time of every process depends on
+the amount of other processes. It means that every process will take some 
+number of rounds to complete, the more processes are executing - the longer 
+single round will take. 

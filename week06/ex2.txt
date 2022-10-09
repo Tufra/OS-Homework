@@ -1,0 +1,64 @@
+Output of ex1:
+n: 5
+Process 0 (arrival, burst): 3 1
+Process 1 (arrival, burst): 2 5
+Process 2 (arrival, burst): 3 8
+Process 3 (arrival, burst): 0 4
+Process 4 (arrival, burst): 1 2
+Process 3:
+                 completion time: 4
+                 turnaround time: 4
+                 waiting time: 0
+Process 4:
+                 completion time: 6
+                 turnaround time: 5
+                 waiting time: 3
+Process 1:
+                 completion time: 11
+                 turnaround time: 9
+                 waiting time: 4
+Process 0:
+                 completion time: 12
+                 turnaround time: 9
+                 waiting time: 8
+Process 2:
+                 completion time: 20
+                 turnaround time: 17
+                 waiting time: 9
+Average turnaround time: 8.800000
+Average waiting time: 4.800000
+
+Output of ex2:
+n: 5
+Process 0 (arrival, burst): 3 1
+Process 1 (arrival, burst): 2 5
+Process 2 (arrival, burst): 3 8
+Process 3 (arrival, burst): 0 4
+Process 4 (arrival, burst): 1 2
+Process 3:
+                 completion time: 4
+                 turnaround time: 4
+                 waiting time: 0
+Process 0:
+                 completion time: 5
+                 turnaround time: 2
+                 waiting time: 1
+Process 4:
+                 completion time: 7
+                 turnaround time: 6
+                 waiting time: 4
+Process 1:
+                 completion time: 12
+                 turnaround time: 10
+                 waiting time: 5
+Process 2:
+                 completion time: 20
+                 turnaround time: 17
+                 waiting time: 9
+Average turnaround time: 7.800000
+Average waiting time: 3.800000
+
+As we can see, both average turnaround time and average waiting time are better
+in shortest job first algorithm. The reason is that shorter tasks are not forced
+to wait for longer tasks that appeared earlier or at the same time as may happen in 
+FCFS algorithm. It means that they have lesser waiting and turnaround time in average. 
