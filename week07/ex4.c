@@ -46,14 +46,14 @@ void main() {
     }
     printf("\n");
 
-    arr = (int*)realloc((void*)arr, 8);
+    arr = (int*)realloc((void*)arr, 8 * sizeof(int));
 
     for (size_t i = 0; i < 8; i++) {
         printf("%d ", arr[i]);
     }
     printf("\n");
 
-    arr = (int*)realloc((void*)arr, 3);
+    arr = (int*)realloc((void*)arr, 3 * sizeof(int));
 
     for (size_t i = 0; i < 3; i++) {
         printf("%d ", arr[i]);
