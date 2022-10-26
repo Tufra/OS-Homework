@@ -1,0 +1,4 @@
+Physical address is an address of memory cell as it is in hardware.
+
+Virtual address is an address in virtual memory space which is mapped 
+to some physical address through page table.

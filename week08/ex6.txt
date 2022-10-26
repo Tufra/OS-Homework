@@ -1,0 +1,2 @@
+If we have 16-bit virtual address and 8 KB pages, then we need 13 bits for offset (2^13 = 8192).
+We have 3 bits left that can describe 8 different page numbers.
