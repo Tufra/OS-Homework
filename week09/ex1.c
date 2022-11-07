@@ -117,7 +117,7 @@ int main(int argc, char* argv[]) {
     int buff;
     while(1) {
         
-        int ret = fscanf(stdin, "%d ", &buff);
+        int ret = fscanf(input_file, "%d ", &buff);
         if (ret == EOF) {
             break;
         }
