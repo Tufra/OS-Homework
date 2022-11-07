@@ -19,9 +19,9 @@ int check_page(int* pages, int size, int current_page) {
     return 0;
 }
 
-void age(unsigned char* counters, int size) {
-    for (int i = 0; i < size; i++) {
-        counters[i] >>= 1;
+void age(unsigned char* counters, int* pages, int page_frames) {
+    for (int i = 0; i < page_frames; i++) {
+        counters[pages[i]] >>= 1;
     }
 }
 
@@ -33,20 +33,17 @@ void update_age(unsigned char* counters, int current_page) {
 
 // finds page with least counter and replaces it with new page
 void replace(unsigned char* counters, int* pages, int pages_size, int current_page) {
-    int least_counter = -1;
-    int least_counter_page_index = -1;
+    unsigned char least_counter = 0;
+    int least_counter_page_index = 0;
     
     for (int i = 0; i < pages_size; i++) {
-        if (least_counter == -1 || counters[pages[i]] <= least_counter) {
+        if (counters[pages[i]] <= least_counter) {
             least_counter = counters[pages[i]];
             least_counter_page_index = i;
         }
     }
     
-    if (least_counter != -1) {
-        // printf("replaced %d (%d) with %d\n", pages[least_counter_page_index], least_counter, current_page);
-        pages[least_counter_page_index] = current_page;
-    }
+    pages[least_counter_page_index] = current_page;
 }
 
 // marks hit in stats
@@ -62,9 +59,7 @@ void miss(Ratio* rat) {
 void aging(Ratio* rat, int* input, int size, int page_frames) {
     
     unsigned char counters[VIRT_MEM_SIZE];
-    for (int i = 0; i < VIRT_MEM_SIZE; i++) {
-        counters[i] = 0;
-    }
+    memset(counters, 0, VIRT_MEM_SIZE);
     
     int pages[page_frames];
     for (int i = 0; i < page_frames; i++) {
@@ -88,7 +83,7 @@ void aging(Ratio* rat, int* input, int size, int page_frames) {
             replace(counters, pages, page_frames, current_page);
         }
         
-        age(counters, VIRT_MEM_SIZE);
+        age(counters, pages, page_frames);
         update_age(counters, current_page);
         
     }
@@ -139,6 +134,8 @@ int main(int argc, char* argv[]) {
     
     aging(&rat, input, n, page_frames);
     printf("%d: \n hits: %d \n misses: %d \n ratio: %f\n", page_frames, rat.hits, rat.misses, (double)rat.hits / (double)rat.misses);
+    
+    free(input);
     
     return 0;
 }
