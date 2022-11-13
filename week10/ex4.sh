@@ -9,9 +9,9 @@ gcc ./ex4.c -o ./ex4
 
 
 
-./ex4
+./ex4 > ex4.txt
 
-# rm ./ex4
+rm ./ex4
 
 rm ./tmp/link1
 rm ./tmp/link2
