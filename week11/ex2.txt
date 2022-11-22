@@ -1,0 +1,7 @@
+ex2.out
+lost+found
+..
+file2
+.
+ex2.txt
+file1
